@@ -1,30 +1,25 @@
-import React from "react";
-// import logo from "./logo.svg";
-import "./styles/App.scss";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Detail } from "./pages/detail/Detail";
-import { Overview } from "./pages/overview/Overview";
+import React, { Component } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Navigation } from "./components/navigation/Navigation";
+import { EpisodeList } from "./components/pages/episodeList/EpisodeList";
+import { OverviewPage } from "./components/pages/overviewPage/OverviewPage";
+import { Episode } from "./components/pages/episode/Episode";
 
-function App() {
-  return (
-    <Router>
-      <div className="App">
+import "./styles/global.scss";
+
+class App extends Component {
+  render() {
+    return (
+      <Router>
         <Navigation />
         <Switch>
-          <Route exact path="/">
-            <Overview />
-          </Route>
-          <Route exact path="/overview">
-            <Overview />
-          </Route>
-          <Route exact path="/detail">
-            <Detail />
-          </Route>
+          <Route exact path="/" component={OverviewPage} />
+          <Route path="/episodes/:id" component={EpisodeList} />
+          <Route path="/episode/:id" component={Episode} />
         </Switch>
-      </div>
-    </Router>
-  );
+      </Router>
+    );
+  }
 }
 
 export default App;

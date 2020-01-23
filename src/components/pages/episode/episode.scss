@@ -1,0 +1,31 @@
+@import "../../../styles/breakpoints.scss";
+
+.episode {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 20px;
+
+  @include medium {
+    flex-direction: row;
+  }
+}
+
+.episode-image {
+  margin: 0;
+
+  @include medium {
+    margin-right: 20px;
+  }
+}
+
+.episode-content {
+  padding: 20px;
+  .meta {
+    margin-bottom: 20px;
+  }
+  span {
+    font-size: 14px;
+    color: grey;
+    margin-right: 10px;
+  }
+}
