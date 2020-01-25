@@ -1,36 +1,34 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { requestTvShows } from "../../../store";
 import { Link } from "react-router-dom";
+import { getShows } from "../../../store/actions/getShows";
+import { PageLayout } from "../../pageLayout/PageLayout";
 
 import "./overviewPage.scss";
 
 export const OverviewPage = () => {
-  const { dataList, error, loading } = useSelector(state => state);
+  const { shows } = useSelector(state => state);
   const dispatch = useDispatch();
+  const url = "http://api.tvmaze.com/search/shows?q=The%20Powerpuff%20Girls";
 
   useEffect(() => {
-    dispatch(requestTvShows());
+    dispatch(getShows(url));
   }, [dispatch]);
 
   const createMarkup = genres => {
     return { __html: genres };
   };
 
-  if (loading) return <div>loading...</div>;
-
   return (
-    <div className="wrapper">
-      {error && <div>Ooops, something went wrong.</div>}
+    <PageLayout>
+      <h1 className="show-title">The Powerpuff girls</h1>
 
-      <h1>The Powerpuff girls</h1>
-
-      {dataList &&
-        dataList.map((data, i) => (
-          <div className="tvshow" key={i}>
-            <img className="tvshow-image" src={data.show.image.medium} alt="" />
-            <div className="tvshow-content">
-              <div className="tvshow-content-head">
+      {shows.length > 0 &&
+        shows.map((data, i) => (
+          <div className="show" key={i}>
+            <img className="show-image" src={data.show.image.medium} alt="" />
+            <div className="show-content">
+              <div className="show-content-head">
                 <h2>{data.show.name}</h2>
                 {data.show.rating.average && (
                   <span className="rating">
@@ -52,6 +50,6 @@ export const OverviewPage = () => {
             </div>
           </div>
         ))}
-    </div>
+    </PageLayout>
   );
 };

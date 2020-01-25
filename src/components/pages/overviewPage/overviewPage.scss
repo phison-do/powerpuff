@@ -1,16 +1,21 @@
 @import "../../../styles/breakpoints.scss";
 
-.tvshow {
+.show {
   display: flex;
   flex-direction: column;
-  margin: 0 0 30px;
+  margin: 0 0 20px;
+  padding: 0 20px 20px;
 
   @include medium {
     flex-direction: row;
   }
 }
 
-.tvshow-image {
+.show-title {
+  padding: 60px 0;
+}
+
+.show-image {
   width: 100%;
 
   @include medium {
@@ -18,17 +23,18 @@
   }
 }
 
-.tvshow-content {
+.show-content {
   padding: 20px;
   position: relative;
+  text-align: left;
 }
 
-.tvshow-genres {
+.show-genres {
   padding: 0;
   margin: 0 0 20px 20px;
 }
 
-.tvshow-content-head {
+.show-content-head {
   display: flex;
   flex-direction: column;
   align-items: baseline;

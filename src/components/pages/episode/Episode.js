@@ -1,45 +1,44 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { requestTvShowEpisode } from "../../../store";
+import { getShows } from "../../../store/actions/getShows";
 
 import "./episode.scss";
+import { PageLayout } from "../../pageLayout/PageLayout";
 
 export const Episode = ({ match }) => {
   const {
     params: { id }
   } = match;
 
-  const { dataList, error, loading, errorMsg } = useSelector(state => state);
+  const { shows } = useSelector(state => state);
   const dispatch = useDispatch();
+  const url = `http://api.tvmaze.com/episodes/${id}`;
 
   useEffect(() => {
-    dispatch(requestTvShowEpisode(id));
-  }, [id, dispatch]);
-
-  if (loading) return <div>loading...</div>;
+    dispatch(getShows(url));
+  }, [url, dispatch]);
 
   const createMarkup = summary => {
     return { __html: summary };
   };
 
   return (
-    <div className="wrapper">
-      {error && <div>Error loading data: {errorMsg}</div>}
-      {dataList && (
+    <PageLayout>
+      {shows && (
         <div className="episode">
-          {dataList.image && (
-            <img className="episode-image" src={dataList.image.medium} alt="" />
+          {shows.image && (
+            <img className="episode-image" src={shows.image.medium} alt="" />
           )}
           <div className="episode-content">
-            <h2>{dataList.name}</h2>
+            <h2>{shows.name}</h2>
             <div className="meta">
-              <span>Season: {dataList.season}</span>
-              <span>Episode: {dataList.number}</span>
+              <span>Season: {shows.season}</span>
+              <span>Episode: {shows.number}</span>
+              <div dangerouslySetInnerHTML={createMarkup(shows.summary)} />
             </div>
-            <div dangerouslySetInnerHTML={createMarkup(dataList.summary)} />
           </div>
         </div>
       )}
-    </div>
+    </PageLayout>
   );
 };
