@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getShows } from "../../../store/actions/getShows";
+import { PageLayout } from "../../pageLayout/PageLayout";
+import { Header } from "../../header/Header";
 
 import "./episode.scss";
-import { PageLayout } from "../../pageLayout/PageLayout";
 
 export const Episode = ({ match }) => {
   const {
@@ -24,6 +25,8 @@ export const Episode = ({ match }) => {
 
   return (
     <PageLayout>
+      <Header title="The Powerpuff girls" />
+
       {shows && (
         <div className="episode">
           {shows.image && (

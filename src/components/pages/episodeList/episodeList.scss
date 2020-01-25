@@ -13,7 +13,19 @@
     @include medium {
       flex-direction: row;
     }
+
+    img {
+      width: 100%;
+
+      @include medium {
+        width: auto;
+      }
+    }
   }
+}
+
+.show-title {
+  padding: 60px 0;
 }
 
 .episode-content {

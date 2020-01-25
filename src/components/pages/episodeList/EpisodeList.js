@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getShows } from "../../../store/actions/getShows";
 import { PageLayout } from "../../pageLayout/PageLayout";
+import { Header } from "../../header/Header";
 
 import "./episodeList.scss";
 
@@ -21,6 +22,8 @@ export const EpisodeList = ({ match }) => {
 
   return (
     <PageLayout>
+      <Header title="The Powerpuff girls" />
+
       <ul className="episodes">
         {shows.length > 0 &&
           shows.map((show, i) => (

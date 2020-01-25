@@ -1,14 +1,18 @@
+@import "../../styles/breakpoints.scss";
+
 .navigation {
   padding: 20px;
   position: fixed;
   right: 30px;
-  top: 30px;
+  top: 0;
+
+  @include medium {
+    top: 30px;
+  }
 
   ul {
     display: flex;
     max-width: 940px;
-    justify-content: flex-end;
-    text-align: right;
     margin: 0;
     padding: 0;
   }
@@ -27,5 +31,9 @@
     &.active {
       color: #ccc;
     }
+  }
+
+  svg {
+    width: 50px;
   }
 }

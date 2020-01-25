@@ -3,10 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getShows } from "../../../store/actions/getShows";
 import { PageLayout } from "../../pageLayout/PageLayout";
+import { Header } from "../../header/Header";
 
-import "./overviewPage.scss";
+import "./homePage.scss";
 
-export const OverviewPage = () => {
+export const HomePage = () => {
   const { shows } = useSelector(state => state);
   const dispatch = useDispatch();
   const url = "http://api.tvmaze.com/search/shows?q=The%20Powerpuff%20Girls";
@@ -21,7 +22,7 @@ export const OverviewPage = () => {
 
   return (
     <PageLayout>
-      <h1 className="show-title">The Powerpuff girls</h1>
+      <Header title="The Powerpuff girls" />
 
       {shows.length > 0 &&
         shows.map((data, i) => (
