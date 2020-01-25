@@ -5,7 +5,6 @@ export const getShows = url => {
   return async dispatch => {
     return await Axios.get(url)
       .then(response => {
-        console.log(response.data);
         dispatch(getShowsSuccess(response.data));
       })
       .catch(error => {
