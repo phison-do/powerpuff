@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getShows } from "../../../store/actions/getShows";
+import { getEpisode } from "../../../store/actions/getEpisode";
 import { PageLayout } from "../../pageLayout/PageLayout";
 import { Header } from "../../header/Header";
 
@@ -11,12 +11,12 @@ export const Episode = ({ match }) => {
     params: { id }
   } = match;
 
-  const { shows } = useSelector(state => state);
+  const { episode } = useSelector(state => state);
   const dispatch = useDispatch();
   const url = `http://api.tvmaze.com/episodes/${id}`;
 
   useEffect(() => {
-    dispatch(getShows(url));
+    dispatch(getEpisode(url));
   }, [url, dispatch]);
 
   const createMarkup = summary => {
@@ -27,17 +27,17 @@ export const Episode = ({ match }) => {
     <PageLayout>
       <Header title="The Powerpuff girls" />
 
-      {shows && (
+      {episode && (
         <div className="episode">
-          {shows.image && (
-            <img className="episode-image" src={shows.image.medium} alt="" />
+          {episode.image && (
+            <img className="episode-image" src={episode.image.medium} alt="" />
           )}
           <div className="episode-content">
-            <h2>{shows.name}</h2>
+            <h2>{episode.name}</h2>
             <div className="meta">
-              <span>Season: {shows.season}</span>
-              <span>Episode: {shows.number}</span>
-              <div dangerouslySetInnerHTML={createMarkup(shows.summary)} />
+              <span>Season: {episode.season}</span>
+              <span>Episode: {episode.number}</span>
+              <div dangerouslySetInnerHTML={createMarkup(episode.summary)} />
             </div>
           </div>
         </div>
