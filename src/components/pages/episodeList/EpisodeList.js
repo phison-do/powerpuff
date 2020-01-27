@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { getShows } from "../../../store/actions/getShows";
+import { getEpisodes } from "../../../store/actions/getEpisodes";
 import { PageLayout } from "../../pageLayout/PageLayout";
 import { Header } from "../../header/Header";
 
@@ -12,12 +12,12 @@ export const EpisodeList = ({ match }) => {
     params: { id }
   } = match;
 
-  const { shows } = useSelector(state => state);
+  const { episodes } = useSelector(state => state);
   const dispatch = useDispatch();
   const url = `http://api.tvmaze.com/shows/${id}/episodes`;
 
   useEffect(() => {
-    dispatch(getShows(url));
+    dispatch(getEpisodes(url));
   }, [url, dispatch]);
 
   return (
@@ -25,8 +25,8 @@ export const EpisodeList = ({ match }) => {
       <Header title="The Powerpuff girls" />
 
       <ul className="episodes">
-        {shows.length > 0 &&
-          shows.map((show, i) => (
+        {episodes.length > 0 &&
+          episodes.map((show, i) => (
             <li key={i}>
               {show.image && <img src={show.image.medium} alt="" />}
 

@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { HomeSvg } from "../svg/HomeSvg";
 
 import "./navigation.scss";
-import { HomeSvg } from "../svg/HomeSvg";
 
 export const Navigation = () => {
   return (

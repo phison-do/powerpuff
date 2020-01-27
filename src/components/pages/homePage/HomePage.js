@@ -13,11 +13,14 @@ export const HomePage = () => {
   const url = "http://api.tvmaze.com/search/shows?q=The%20Powerpuff%20Girls";
 
   useEffect(() => {
+    console.log("aaa");
     dispatch(getShows(url));
   }, [dispatch]);
 
-  const createMarkup = genres => {
-    return { __html: genres };
+  console.log(shows);
+
+  const createMarkup = summary => {
+    return { __html: summary };
   };
 
   return (

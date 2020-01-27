@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
 import getShowsReducer from "./getShowsReducer";
+import getEpisodesReducer from "./getEpisodesReducer";
 
 export default combineReducers({
-  shows: getShowsReducer
+  shows: getShowsReducer,
+  episodes: getEpisodesReducer
 });
